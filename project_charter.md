@@ -1,8 +1,7 @@
 
 ---
 
-# 📂 الملف الثاني: `project_charter.md`  
-هذا الملف **مختصر** (التاسك الخامس)، يحتوي فقط على الملخص المنظم لكل الأقسام الرئيسية.
+# 📂 File 2: `project_charter.md`
 
 ```markdown
 # Project Charter – Smart Travel Website  
@@ -22,12 +21,12 @@
 - **Internal:** Team members, tutors/instructors.  
 - **External:** End-users (travelers), industry experts (optional).  
 
-| Team Member | Role | Responsibilities |
-|-------------|------|------------------|
-| Hamad Dahash | Project Manager | Oversees planning, ensures deadlines, manages communication. |
-| Suhail Alaboud | Implementation Lead | Leads execution, implements core features, ensures technical quality. |
-| Khaled Aldawsari | Research & Documentation | Supports research, documents progress, assists with design. |
-| Abrar Almukhlaifi | Support & Testing | Assists in testing, provides feedback, supports non-technical tasks. |
+| Team Member        | Role                   | Responsibilities                                                |
+|--------------------|------------------------|----------------------------------------------------------------|
+| Hamad Dahash       | Project Manager        | Oversees planning, ensures deadlines, manages communication.   |
+| Suhail Alaboud     | Implementation Lead    | Leads execution, implements core features, ensures technical quality. |
+| Khaled Aldawsari   | Research & Documentation | Supports research, documents progress, assists with design.    |
+| Abrar Almukhlaifi  | Support & Testing      | Assists in testing, provides feedback, supports non-technical tasks. |
 
 ---
 
@@ -50,13 +49,13 @@
 ---
 
 ## Risks
-| Risk | Mitigation |
-|------|-------------|
-| API Integration Challenges | Test APIs early, use fallback datasets. |
-| Data Accuracy & Updates | Use trusted sources, schedule validations. |
-| Timeline Delays | Break tasks into smaller deliverables. |
-| Team Availability | Assign critical tasks to Implementation Lead. |
-| Security Concerns | Include safety tips, verified links. |
+| Risk                     | Mitigation Strategy                                    |
+|--------------------------|--------------------------------------------------------|
+| API Integration Challenges | Test APIs early, use fallback datasets.              |
+| Data Accuracy & Updates  | Use trusted sources, schedule validations.             |
+| Timeline Delays          | Break tasks into smaller deliverables.                 |
+| Team Availability        | Assign critical tasks to Implementation Lead.          |
+| Security Concerns        | Include safety tips, verified links.                   |
 
 ---
 
