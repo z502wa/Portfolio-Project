@@ -1,5 +1,12 @@
 # Project Charter – Smart Travel Website  
 
+> **Note:**  
+> This document is a summarized version (Task 5) of all previous tasks.  
+> For the full detailed version of Tasks 0–4, please refer to this link:  
+> [Detailed Project Documentation](https://github.com/z502wa/Portfolio-Project/blob/main/README.md)
+
+---
+
 ## Project Objectives
 - **Purpose:** Simplify travel planning by generating personalized itineraries based on user preferences, budget, and travel styles.  
 - **Objectives:**  
