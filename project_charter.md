@@ -1,12 +1,4 @@
-
----
-
-# 📂 File 2: `project_charter.md`
-
-```markdown
 # Project Charter – Smart Travel Website  
-
----
 
 ## Project Objectives
 - **Purpose:** Simplify travel planning by generating personalized itineraries based on user preferences, budget, and travel styles.  
@@ -73,15 +65,20 @@ gantt
     title Project Timeline - Smart Travel Website
     dateFormat  YYYY-MM-DD
     excludes    weekends
+
     section Stage 1
     Idea Development :done, s1, 2025-08-25, 2025-09-07
+
     section Stage 2
     Project Charter Development :active, s2, 2025-09-08, 2025-09-21
+
     section Stage 3
     Technical Documentation : s3, 2025-09-22, 2025-10-05
+
     section Stage 4
     MVP Development (Build) : s4a, 2025-10-06, 2025-11-02
     MVP Integration & Polish : s4b, 2025-11-03, 2025-11-09
+
     section Stage 5
     Testing & Final Presentation : s5a, 2025-11-10, 2025-11-23
     Closure & Handover : s5b, 2025-11-24, 2025-11-30
