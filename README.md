@@ -1,4 +1,4 @@
-# Project Charter – (Stage 2) Smart Travel Website (Detailed Version) (Stage 2)
+# Project Charter – (Stage 2) Smart Travel Website (Detailed Version) 
 
 ---
 
