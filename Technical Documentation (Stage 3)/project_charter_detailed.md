@@ -247,3 +247,43 @@ The app keeps transient state only; no persistence beyond the session.
   ]
 }
 
+No database (ERD/collections) is required for the MVP.
+If persistence is introduced later:
+
+Relational: plans(id, destination, duration, budget, styles_json, language, plan_md, created_at)
+
+Document: plans { destination, duration, budget, styles[], language, plan_md, created_at }
+
+4) Front-End UI Components & Interactions
+
+Inputs Panel (Centered Form): destination, duration, budgetTier, travelStyles, language, [Generate].
+
+Plan View: summary (chips) + sections (best time, itinerary, accommodations, culinary, tips, cost).
+
+Q&A Expander: question → answer grounded in current plan.
+
+Export: [Download PDF].
+
+Interaction Flow (High-Level):
+
+User fills inputs → PromptOrchestrator builds prompt.
+
+AiClient generates draft plan.
+
+SearchClient fetches links/details.
+
+PlanComposer merges and normalizes → UI renders Markdown.
+
+(Optional) QA uses current plan as context.
+
+Export via PdfService.
+
+5) Technical Justification
+
+No Back-End / No DB: not a current requirement; reduces complexity and time-to-value.
+
+LLM + SerpAPI: cover computation and fresh references without storing user data.
+
+In-Memory State: sufficient for single-session usage; avoids authentication/storage overhead.
+
+Future-Ready: a server API or persistence layer can be added later with minimal refactoring.
