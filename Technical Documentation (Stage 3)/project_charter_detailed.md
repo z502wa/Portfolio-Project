@@ -361,4 +361,186 @@ sequenceDiagram
   2. Question answering.  
   3. Exporting plan as PDF.
 
+# Task 4: Document External and Internal APIs
+
+## Purpose
+Specify how the system interacts with **external APIs** and define the project’s **internal API** (planned interface for future extensibility).
+
+---
+
+## External APIs
+
+| API | Base URL | Why Chosen | Auth | Typical Use |
+|---|---|---|---|---|
+| **Groq Llama (LLM)** | `https://api.groq.com` | High‑quality, fast text generation to produce structured travel plans and Q&A. | API Key (Bearer) | Generate a concise plan and contextual answers. |
+| **SerpAPI (Search/Maps/Hotels)** | `https://serpapi.com` and Google endpoints via SerpAPI proxy | Reliable, up‑to‑date web results (hotels, attractions, official pages) with a unified JSON schema. | API Key | Enrich plan with verified links/details. |
+
+> **Note (MVP):** Calls are orchestrated client‑side. No server back‑end is required to function; the internal API below defines a future‑ready contract if a thin server layer is added later.
+
+### Example – Groq Llama (pseudo)
+**Endpoint:** `POST https://api.groq.com/openai/v1/chat/completions`  
+**Headers:** `Authorization: Bearer <GROQ_API_KEY>`  
+**Body (JSON):**
+```json
+{
+  "model": "llama-3.3-70b-versatile",
+  "messages": [
+    {"role": "system", "content": "You are a travel planning assistant."},
+    {"role": "user", "content": "Generate a 5-day plan for Tokyo with moderate budget in English..."}
+  ]
+}
+```
+**Response (truncated):**
+```json
+{
+  "id": "cmpl_123",
+  "choices": [
+    { "message": { "role": "assistant", "content": "## Best Time to Visit\n..."} }
+  ]
+}
+```
+
+### Example – SerpAPI (pseudo)
+**Endpoint:** `GET https://serpapi.com/search.json`  
+**Query:** `q=best hotels in paris&engine=google&api_key=<SERPAPI_KEY>`  
+**Response (truncated):**
+```json
+{
+  "search_metadata": { "status": "Success" },
+  "organic_results": [
+    { "title": "Hotel A", "link": "https://example.com/hotel-a" }
+  ]
+}
+```
+
+---
+
+## Internal API (Planned, Optional Server Layer)
+
+**Base URL:** `https://your-domain.example/api`  
+**Auth (MVP):** none (can add Bearer/Session later)  
+**Content Types:** `application/json` (for data), `application/pdf` (for file response)
+
+### Endpoints Overview
+| Method | Path | Purpose | Input | Output |
+|---|---|---|---|---|
+| `POST` | `/plan/generate` | Generate AI travel plan | JSON (inputs) | JSON (plan markdown + sources) |
+| `POST` | `/plan/qa` | Answer a question using current plan context | JSON | JSON (answer markdown) |
+| `POST` | `/plan/export` | Export plan as PDF | JSON (markdown) | PDF (binary) or URL |
+| `GET` | `/health` | Health check | — | JSON status |
+
+---
+
+### 1) `POST /plan/generate`
+**Purpose:** Build a structured prompt from inputs, call LLM, enrich via SerpAPI, return a finalized plan.
+
+**Request (JSON):**
+```json
+{
+  "destination": "Paris",
+  "duration": 5,
+  "budgetTier": "Moderate",
+  "travelStyles": ["Culture", "Food"],
+  "language": "English"
+}
+```
+
+**Response (JSON):**
+```json
+{
+  "plan_markdown": "## Best Time to Visit\n...",
+  "sources": [
+    {"title": "Official Tourism", "url": "https://parisinfo.com"},
+    {"title": "Hotel A", "url": "https://example.com/hotel-a"}
+  ],
+  "meta": { "model": "llama-3.3-70b-versatile", "generated_at": "2025-09-22T10:00:00Z" }
+}
+```
+
+**Errors:**
+```json
+{ "error": { "code": "INPUT_INVALID", "message": "destination is required" } }
+```
+
+---
+
+### 2) `POST /plan/qa`
+**Purpose:** Receive a user question and the current plan context, return a concise answer.
+
+**Request (JSON):**
+```json
+{
+  "question": "Is the metro safe at night?",
+  "plan_context": "## Best Time to Visit\n... (current plan markdown, truncated)",
+  "language": "English"
+}
+```
+
+**Response (JSON):**
+```json
+{
+  "answer_markdown": "**Short answer:** ...\n\n**Tip:** ...",
+  "sources": [
+    {"title": "Transit Authority", "url": "https://tmb.cat/en"}
+  ]
+}
+```
+
+**Errors:**
+```json
+{ "error": { "code": "LLM_UNAVAILABLE", "message": "Try again later" } }
+```
+
+---
+
+### 3) `POST /plan/export`
+**Purpose:** Convert the current plan markdown into a styled PDF.
+
+**Request (JSON):**
+```json
+{
+  "plan_markdown": "## Best Time to Visit\n...",
+  "file_name": "smart-travel-plan-paris.pdf"
+}
+```
+
+**Response (Binary or JSON):**
+- **Binary:** `application/pdf` stream  
+- **or JSON:**  
+```json
+{ "pdf_url": "https://your-domain.example/storage/smart-travel-plan-paris.pdf" }
+```
+
+**Errors:**
+```json
+{ "error": { "code": "PDF_FAILED", "message": "Unable to render PDF" } }
+```
+
+---
+
+### 4) `GET /health`
+**Purpose:** Simple health check.
+
+**Response:**
+```json
+{ "status": "ok", "service": "smart-traveler-api", "time": "2025-09-22T10:00:00Z" }
+```
+
+---
+
+## Cross‑Cutting Concerns
+
+- **Rate Limits:** Respect Groq/SerpAPI quotas; implement basic throttling if server is added.  
+- **Observability:** Log request IDs, model used, latency, and error codes.  
+- **Security:** Keep API keys server-side when a server exists; never expose secrets to clients.  
+- **Internationalization:** `language` input controls output language (Arabic/English).  
+- **Error Model:** Consistent shape — `{ "error": { "code": "...", "message": "..." } }`.
+
+---
+
+## Deliverables
+- List of external APIs (Groq Llama, SerpAPI) with purpose and sample usage.  
+- Internal API contract (planned): endpoints, methods, inputs/outputs, and error model.
+
+
 
