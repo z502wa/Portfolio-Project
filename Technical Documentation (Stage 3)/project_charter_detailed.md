@@ -208,19 +208,15 @@ This minimizes complexity, speeds up delivery, and fully satisfies current funct
 ### Purpose
 To detail the internal structure of the system components for the MVP. Since this project is front-end focused with no persistence requirements, the documentation explains the in-memory model and outlines how components interact without back-end or database dependencies.
 
----
-
 ### 1) Back-End Components
-- **No back-end service** is included in the MVP.  
-- All logic is handled client-side within the Streamlit application.  
-- If persistence or APIs are required in the future, a thin back-end layer (e.g., FastAPI / Node.js) can be added with minimal refactoring.  
-
----
+- No back-end service is included in the MVP.
+- All logic is handled client-side within the Streamlit application.
+- If persistence or APIs are required in the future, a thin back-end layer (e.g., FastAPI/Node.js) can be added with minimal refactoring.
 
 ### 2) Data Model (In-Memory – No DB)
 The app keeps transient state only; no persistence beyond the session.
 
-```json
+Example JSON structure:
 {
   "inputs": {
     "destination": "string",
@@ -234,20 +230,16 @@ The app keeps transient state only; no persistence beyond the session.
     { "q": "string", "a": "Markdown string" }
   ]
 }
-3) Database (Future Consideration)
+
+### 3) Database (Future Consideration)
 No Database (ERD/Collections) for MVP
-No database is required for the MVP.
-If persistence is introduced later:
 
-Relational Example:
+No database is required for the MVP. If persistence is introduced later:
 
-sql
-Copy code
+Relational Example (SQL):
 plans(id, destination, duration, budget, styles_json, language, plan_md, created_at)
-Document Example:
 
-json
-Copy code
+Document Example (JSON):
 plans {
   "destination": "Paris",
   "duration": "7 days",
@@ -257,37 +249,23 @@ plans {
   "plan_md": "...",
   "created_at": "2025-09-22"
 }
-4) Front-End UI Components & Interactions
-Inputs Panel (Centered Form): destination, duration, budgetTier, travelStyles, language, [Generate].
 
-Plan View: summary (chips) + sections (best time, itinerary, accommodations, culinary, tips, cost).
-
-Q&A Expander: question → answer grounded in current plan.
-
-Export: [Download PDF].
+### 4) Front-End UI Components & Interactions
+- Inputs Panel (Centered Form): destination, duration, budgetTier, travelStyles, language, [Generate]
+- Plan View: summary (chips) + sections (best time, itinerary, accommodations, culinary, tips, cost)
+- Q&A Expander: question → answer grounded in current plan
+- Export: [Download PDF]
 
 Interaction Flow (High-Level):
+1. User fills inputs → PromptOrchestrator builds structured prompt
+2. AiClient (LLM API) generates draft plan
+3. SearchClient (SerpAPI) fetches supporting links/details
+4. PlanComposer merges and normalizes → UI renders Markdown
+5. (Optional) QA uses current plan as context
+6. Export via PdfService
 
-User fills inputs → PromptOrchestrator builds structured prompt.
-
-AiClient (LLM API) generates draft plan.
-
-SearchClient (SerpAPI) fetches supporting links/details.
-
-PlanComposer merges and normalizes → UI renders Markdown.
-
-(Optional) QA uses current plan as context.
-
-Export via PdfService.
-
-5) Technical Justification
-No Back-End / No DB: not a current requirement; reduces complexity and time-to-value.
-
-LLM + SerpAPI: cover computation and fresh references without storing user data.
-
-In-Memory State: sufficient for single-session usage; avoids authentication/storage overhead.
-
-Future-Ready: a server API or persistence layer can be added later with minimal refactoring.
-
-yaml
-Copy code
+### 5) Technical Justification
+- No Back-End / No DB: not a current requirement; reduces complexity and time-to-value
+- LLM + SerpAPI: cover computation and fresh references without storing user data
+- In-Memory State: sufficient for single-session usage; avoids authentication/storage overhead
+- Future-Ready: a server API or persistence layer can be added later with minimal refactoring
