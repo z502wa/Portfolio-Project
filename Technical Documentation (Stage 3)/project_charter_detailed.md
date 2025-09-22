@@ -167,3 +167,83 @@ The MVP is a web application that generates a concise, source-backed travel plan
 ### Deliverable
 - **Diagram illustrating the architecture and data flow** (linked above).
 - **Accompanying description** of each component and integration points.
+
+## Task 2: Define Components, Classes, and Database Design
+
+### 0) Design Rationale (MVP – Front-End Only)
+This MVP intentionally ships **without a dedicated back-end or database**.  
+All state is **ephemeral and stored in-memory** on the client app (session state), and external services are used for computation and data enrichment.  
+This minimizes complexity, speeds up delivery, and fully satisfies current functional requirements.
+
+---
+
+### 1) Logical Components (No Server Back-End)
+- **UI Layer (Streamlit App)**
+  - Collects inputs: Destination, Duration, Budget Tier (Budget/Moderate/Luxury), Travel Styles (multi-select), Output Language.
+  - Actions: Generate Plan, Q&A (contextual), Export PDF.
+  - Holds transient data in session state.
+
+- **Prompt Orchestrator (Client-Side Module)**
+  - Builds a structured prompt from user inputs and output constraints (Markdown, ~600 words, sections, sources).
+
+- **AI Generation (External Service)**
+  - Groq Llama API returns the initial travel plan.
+
+- **Search/Enrichment (External Service)**
+  - SerpAPI fetches reliable links and up-to-date references (hotels/attractions/infos).
+
+- **Plan Post-Processor (Client-Side Module)**
+  - Merges AI text with enriched links; ensures sections exist; normalizes the final Markdown.
+
+- **PDF Exporter (Client-Side Module)**
+  - Converts rendered Markdown into a downloadable PDF.
+
+> **Note:** There is **no server back-end** in the MVP.  
+> If needed later, a thin API layer can be introduced without breaking the current UI.
+
+---
+
+### 2) Conceptual Classes (Documentation-Only)
+> These are **conceptual** (for clarity), not implementation code.
+
+**Class: `PromptOrchestrator`**  
+- **Attributes:** `destination`, `duration`, `budgetTier`, `travelStyles[]`, `language`  
+- **Responsibility:** Build a structured prompt with constraints and tone.
+
+**Class: `AiClient`**  
+- **Attributes:** `llmProvider`  
+- **Responsibility:** Send prompt to LLM, return draft plan (Markdown).
+
+**Class: `SearchClient`**  
+- **Attributes:** `serpProvider`  
+- **Responsibility:** Fetch links/details for hotels/attractions and general references.
+
+**Class: `PlanComposer`**  
+- **Responsibility:** Merge LLM draft + search results → normalized Markdown (sections, links).
+
+**Class: `PdfService`**  
+- **Responsibility:** Convert Markdown to PDF and trigger download.
+
+**Class: `QaHandler`**  
+- **Responsibility:** Answer follow-up questions using the current plan as context.
+
+---
+
+### 3) Data Model (In-Memory – No DB)
+The app keeps transient state only; no persistence beyond the session.
+
+```json
+{
+  "inputs": {
+    "destination": "string",
+    "duration": 1,
+    "budgetTier": "Budget | Moderate | Luxury",
+    "travelStyles": ["Culture", "Nature", "Adventure", "Relaxation", "Food", "Shopping"],
+    "language": "Arabic | English"
+  },
+  "plan": "Markdown string (final enriched plan)",
+  "qa": [
+    { "q": "string", "a": "Markdown string" }
+  ]
+}
+
