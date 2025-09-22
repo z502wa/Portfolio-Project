@@ -1,0 +1,65 @@
+
+# Task 5: Plan SCM and QA Strategies
+
+## Purpose
+To establish procedures for managing code, the development lifecycle, and ensuring quality.
+
+---
+
+## 1. Source Control Management (SCM)
+
+**Tool:** Git (via GitHub).
+
+**Branching Strategy:**
+- `main`: Stable branch for production-ready code.
+- `dev`: Integration branch for ongoing development.
+- `feature/*`: Each new feature or task is developed in its own branch.
+
+**Processes:**
+- Regular commits with descriptive messages.
+- Pull Requests (PRs) required for merging feature branches into `dev`.
+- Code reviews by at least one peer before merging.
+- Merges into `main` happen only after QA approval.
+
+---
+
+## 2. Quality Assurance (QA)
+
+**Testing Strategy:**
+- **Unit Testing:** For modular validation (e.g., input parsing, PDF export).  
+- **Integration Testing:** Ensure LLM + SerpAPI integration works end-to-end.  
+- **Manual Testing:** Validate UI flows (inputs → plan → Q&A → export).
+
+**Tools:**
+- `pytest`: For unit and integration tests (Python).  
+- `Postman`: For testing API endpoints if exposed later.  
+- `Streamlit testing utilities`: Manual/automated checks of the UI.  
+
+**Pipeline:**
+- **Local Development:** Developers run unit tests before commits.  
+- **CI Pipeline (GitHub Actions):** Automatically runs tests on every PR.  
+- **Staging Deployment (Optional):** Deploy preview version for manual QA.  
+- **Production Deployment:** Merge into `main` triggers production release.
+
+---
+
+## Deliverables
+
+- **SCM Strategy:**
+  - GitHub-based, with branching (`main`, `dev`, `feature/*`).
+  - Mandatory PR reviews before merges.
+  - Commit hygiene enforced.
+
+- **QA Strategy:**
+  - Unit, integration, and manual testing.  
+  - Tools: pytest, Postman, Streamlit utilities.  
+  - CI pipeline with automated test execution.
+
+---
+
+## Benefits
+
+- **SCM:** Ensures stable main branch, prevents unreviewed code from entering production.  
+- **QA:** Detects bugs early, ensures reliable LLM + SerpAPI integration, improves confidence in MVP delivery.
+
+
