@@ -252,11 +252,9 @@ The app keeps transient state only; no persistence beyond the session.
 No database (ERD/collections) is required for the MVP.  
 If persistence is introduced later:
 
-**Relational Example**:  
-`plans(id, destination, duration, budget, styles_json, language, plan_md, created_at)`
-
-**Document Example**:  
-```json
+**Relational Example:**
+```sql
+plans(id, destination, duration, budget, styles_json, language, plan_md, created_at)
 plans {
   "destination": "Paris",
   "duration": "7 days",
