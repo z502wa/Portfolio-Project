@@ -203,33 +203,21 @@ This minimizes complexity, speeds up delivery, and fully satisfies current funct
 
 ---
 
-### 2) Conceptual Classes (Documentation-Only)
-> These are **conceptual** (for clarity), not implementation code.
+## 2. Define Components, Classes, and Database Design
 
-**Class: `PromptOrchestrator`**  
-- **Attributes:** `destination`, `duration`, `budgetTier`, `travelStyles[]`, `language`  
-- **Responsibility:** Build a structured prompt with constraints and tone.
-
-**Class: `AiClient`**  
-- **Attributes:** `llmProvider`  
-- **Responsibility:** Send prompt to LLM, return draft plan (Markdown).
-
-**Class: `SearchClient`**  
-- **Attributes:** `serpProvider`  
-- **Responsibility:** Fetch links/details for hotels/attractions and general references.
-
-**Class: `PlanComposer`**  
-- **Responsibility:** Merge LLM draft + search results → normalized Markdown (sections, links).
-
-**Class: `PdfService`**  
-- **Responsibility:** Convert Markdown to PDF and trigger download.
-
-**Class: `QaHandler`**  
-- **Responsibility:** Answer follow-up questions using the current plan as context.
+### Purpose
+To detail the internal structure of the system components for the MVP. Since this project is front-end focused with no persistence requirements, the documentation explains the in-memory model and outlines how components interact without back-end or database dependencies.
 
 ---
 
-### 3) Data Model (In-Memory – No DB)
+### 1) Back-End Components
+- **No back-end service** is included in the MVP.  
+- All logic is handled client-side within the Streamlit application.  
+- If persistence or APIs are required in the future, a thin back-end layer (e.g., FastAPI / Node.js) can be added with minimal refactoring.  
+
+---
+
+### 2) Data Model (In-Memory – No DB)
 The app keeps transient state only; no persistence beyond the session.
 
 ```json
@@ -246,15 +234,20 @@ The app keeps transient state only; no persistence beyond the session.
     { "q": "string", "a": "Markdown string" }
   ]
 }
-
-### No Database (ERD/Collections) for MVP
-
-No database (ERD/collections) is required for the MVP.  
+3) Database (Future Consideration)
+No Database (ERD/Collections) for MVP
+No database is required for the MVP.
 If persistence is introduced later:
 
-**Relational Example:**
-```sql
+Relational Example:
+
+sql
+Copy code
 plans(id, destination, duration, budget, styles_json, language, plan_md, created_at)
+Document Example:
+
+json
+Copy code
 plans {
   "destination": "Paris",
   "duration": "7 days",
@@ -264,3 +257,37 @@ plans {
   "plan_md": "...",
   "created_at": "2025-09-22"
 }
+4) Front-End UI Components & Interactions
+Inputs Panel (Centered Form): destination, duration, budgetTier, travelStyles, language, [Generate].
+
+Plan View: summary (chips) + sections (best time, itinerary, accommodations, culinary, tips, cost).
+
+Q&A Expander: question → answer grounded in current plan.
+
+Export: [Download PDF].
+
+Interaction Flow (High-Level):
+
+User fills inputs → PromptOrchestrator builds structured prompt.
+
+AiClient (LLM API) generates draft plan.
+
+SearchClient (SerpAPI) fetches supporting links/details.
+
+PlanComposer merges and normalizes → UI renders Markdown.
+
+(Optional) QA uses current plan as context.
+
+Export via PdfService.
+
+5) Technical Justification
+No Back-End / No DB: not a current requirement; reduces complexity and time-to-value.
+
+LLM + SerpAPI: cover computation and fresh references without storing user data.
+
+In-Memory State: sufficient for single-session usage; avoids authentication/storage overhead.
+
+Future-Ready: a server API or persistence layer can be added later with minimal refactoring.
+
+yaml
+Copy code
