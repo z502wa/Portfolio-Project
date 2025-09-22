@@ -1,6 +1,8 @@
 # Stage 3 — Technical Documentation  
 ## Task 0: Define User Stories and Mockups  
 
+---
+
 ### 1. Inputs & Preferences (from current code)
 - **Destination** *(text)*: User manually enters the city/target destination.  
 - **Duration** *(number)*: Trip length (1–30 days).  
@@ -57,9 +59,10 @@
 
 ### 3. Mockups (Wireframe Descriptions)
 
-1. **Screen A — Trip Settings (Sidebar) + Overview**  
-   - Sidebar: Destination, Duration, Budget, Travel Styles, Answer Language, [Generate Plan].  
-   - Main Panel: Intro text + empty state.  
+1. **Screen A — Trip Settings (Centered Form)**  
+   - Fields: Destination, Duration, Budget, Travel Styles, Answer Language, [Generate Plan].  
+   - Layout: Clean vertical layout in the **center of the page**.  
+   - Background: A collage of travel destinations with a subtle overlay.  
 
 2. **Screen B — Plan View**  
    - Header: Destination, Duration, Budget, Styles (summary).  
@@ -73,7 +76,13 @@
 
 ---
 
-### 4. Notes for Implementation
+### 4. UI Mockup Preview  
+
+![Smart Traveler UI](https://github.com/z502wa/Portfolio-Project/blob/main/Technical%20Documentation%20(Stage%203)/ui_mockup.png)
+
+---
+
+### 5. Notes for Implementation
 - **Prompting:** Structured input sent to AI (Groq Llama) including user data and instructions.  
 - **Source Links:** Verified using SerpAPI to fetch live, accurate references.  
 - **PDF Export:** Convert Markdown into PDF preserving sections and formatting.  
