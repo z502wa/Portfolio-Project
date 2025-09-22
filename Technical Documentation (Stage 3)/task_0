@@ -7,7 +7,7 @@
 - **Destination** *(text)*: User manually enters the city/target destination.  
 - **Duration** *(number)*: Trip length (1–30 days).  
 - **Budget** *(select slider)*: Options are **Budget | Moderate | Luxury**.  
-- **Travel Styles** *(multi-select)*: `Culture, Nature, Adventure, Relaxation, Food, Shopping`.  
+- **Travel Styles** *(multi-select)*: `Culture`, `Nature`, `Adventure`, `Relaxation`, `Food`, `Shopping`.  
 - **Answer Language** *(select)*: **Arabic | English** (output language only).  
 - **Primary Actions**:  
   - **Generate My Perfect Travel Plan** → Structured prompt sent to the AI model, returning:  
@@ -51,7 +51,7 @@
 8. **Email plan to myself**  
    *As a traveler, I want to send my plan to my email, so that I can access it later.*  
 
-#### Won’t Have
+#### Won't Have
 9. **Automatic destination suggestions** → Out of scope.  
 10. **In-app bookings** → Out of scope.  
 
@@ -70,9 +70,9 @@
    - Footer: [Export PDF] [Regenerate Plan].  
 
 3. **Screen C — Q&A Panel**  
-   - Input: “Ask a question about your plan…”  
+   - Input: "Ask a question about your plan..."  
    - Answer: Shown in Markdown, grounded in the generated plan.  
-   - Empty State: “Generate a plan first.”  
+   - Empty State: "Generate a plan first."  
 
 ---
 
@@ -84,6 +84,4 @@
 
 ### 5. Notes for Implementation
 - **Prompting:** Structured input sent to AI (Groq Llama) including user data and instructions.  
-- **Source Links:** Verified using SerpAPI to fetch live, accurate references.  
-
-
+- **Source Links:** Verified using SerpAPI to fetch live, accurate references.
