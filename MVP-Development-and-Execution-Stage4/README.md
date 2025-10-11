@@ -124,5 +124,55 @@ To implement features and deliverables according to the sprint plan, ensuring de
 
 ---
 
+## 2. Monitor Progress and Adjust  
+**Mandatory**
+
+### Purpose
+To track team performance, measure progress, and address any issues during the sprint.
+
+---
+
+### Approach
+
+#### 1. Daily Stand-Ups
+- Short daily meetings (10–15 minutes).
+- Each team member answers:
+  - What did I complete yesterday?
+  - What will I work on today?
+  - Do I have any blockers?
+
+#### 2. Project Management Tools
+- Use **Trello** (or Jira) to manage tasks.
+- Tasks are represented as cards moving across boards:
+  - **To Do → In Progress → Done**
+- Provides transparency and progress tracking for all stakeholders.
+
+#### 3. Metrics for Progress Tracking
+- **Sprint Velocity**: Number of tasks completed in each sprint.
+- **Completion Rate**: % of tasks completed vs. planned.
+- **Bug Count & Resolution Rate**: Track number of issues and time to resolve them.
+
+#### 4. Adjustments
+- If delays or blockers occur:
+  - Reassign tasks across team members.
+  - Adjust sprint goals based on capacity and priorities.
+- Objective: Keep the MVP development on track and within timeline.
+
+---
+
+### Example
+For a two-week sprint:
+- **Daily Stand-Up**: Quick updates and blockers shared.
+- **End of Week Review**: Track progress (e.g., 5 out of 7 tasks completed → 71% completion).
+- **Adjustment**: Shift pending tasks to next sprint or redistribute workload.
+
+---
+
+### Deliverable
+A monitoring strategy including:
+- Daily Stand-Up plan.
+- Trello board setup for task tracking.
+- Metrics definition (velocity, completion %, bug resolution).
+- Adjustment process for blockers and delays.
 
 
