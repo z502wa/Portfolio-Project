@@ -124,7 +124,7 @@ To implement features and deliverables according to the sprint plan, ensuring de
 
 ---
 
-## 2. Monitor Progress and Adjust  
+## Task 2. Monitor Progress and Adjust  
 **Mandatory**
 
 ### Purpose
