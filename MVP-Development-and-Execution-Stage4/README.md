@@ -81,3 +81,48 @@ To divide the development phase into short, manageable iterations, prioritize ta
 ## Deliverable
 
 A sprint plan with prioritized tasks, clear responsibilities, and deadlines for all team members to guide MVP development.
+
+
+# Task 1: Execute Development Tasks  
+**Mandatory**
+
+## Purpose  
+To implement features and deliverables according to the sprint plan, ensuring development aligns with coding standards, SCM practices, and QA testing.
+
+---
+
+## Execution Process
+
+### Developers  
+- Implement assigned features from the sprint backlog.  
+- Follow agreed coding standards and documentation guidelines.  
+- Commit code frequently to feature branches with clear commit messages.  
+
+### Source Control Manager (SCM)  
+- Enforce Git branching strategy (feature branches → pull requests → development branch → main).  
+- Review pull requests to ensure code quality and consistency.  
+- Resolve conflicts and maintain branch integrity.  
+
+### Quality Assurance (QA)  
+- Test completed features immediately after development.  
+- Conduct **unit tests** (functionality of each component) and **integration tests** (end-to-end flow).  
+- Report bugs or performance issues back to developers.  
+
+---
+
+## Example: API Feature Development  
+- **Developer**: Implements an API endpoint to fetch travel plan data.  
+- **SCM**: Reviews and merges the pull request after validation.  
+- **QA**: Uses Postman to test endpoint responses for accuracy and reliability.  
+
+---
+
+## Deliverables  
+- Completed and reviewed features merged into the development branch.  
+- QA test reports on completed features.  
+- Updated documentation (if required).  
+
+---
+
+
+
