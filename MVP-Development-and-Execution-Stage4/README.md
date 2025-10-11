@@ -175,4 +175,42 @@ A monitoring strategy including:
 - Metrics definition (velocity, completion %, bug resolution).
 - Adjustment process for blockers and delays.
 
+# Task 3. Conduct Sprint Reviews and Retrospectives
+
+**Purpose:**  
+To review progress, demo completed features, and reflect on process improvements.
+
+---
+
+#### Sprint Review
+At the end of the sprint, the team demonstrated the completed features of the MVP to stakeholders:  
+
+- User can input trip details (Destination, Duration, Budget, Travel Styles).  
+- System generates a personalized travel plan including cost breakdown, accommodations, and safety tips.  
+- Export to PDF feature was shown.  
+
+**Stakeholder Feedback:**  
+- Positive feedback on the clean UI and personalized itinerary.  
+- Suggested improvements in making the budget breakdown more detailed.
+
+---
+
+#### Sprint Retrospective
+**What worked well:**  
+- Clear division of tasks among team members.  
+- Successful integration of AI model and SerpAPI.  
+
+**What didn’t work:**  
+- Some delays in merging feature branches due to late pull requests.  
+- Limited time for QA testing during the sprint.  
+
+**Improvements for the next sprint:**  
+- Create smaller, more frequent pull requests for faster reviews.  
+- Allocate dedicated time for QA testing in each sprint.  
+
+---
+
+**Deliverables:**  
+- Summary of Sprint Review (features demoed + stakeholder feedback).  
+- Retrospective notes (what worked, what didn’t, improvements).
 
