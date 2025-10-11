@@ -214,3 +214,32 @@ At the end of the sprint, the team demonstrated the completed features of the MV
 - Summary of Sprint Review (features demoed + stakeholder feedback).  
 - Retrospective notes (what worked, what didn’t, improvements).
 
+# Task 4: Final Integration and QA Testing
+
+During this phase, the focus was on ensuring that all components of the Smart Travel Website MVP worked together seamlessly and met quality standards.
+
+#### 1. Integration Testing
+- Verified that the input panel (destination, duration, budget, travel styles, language) correctly passes data to the AI agent.
+- Ensured that the Groq Llama model processes the inputs and generates a structured travel plan.
+- Confirmed that SerpAPI provides accurate and up-to-date links for attractions, accommodations, and restaurants.
+- Tested that the UI renders the final travel plan in Markdown format, combining results from both the AI model and SerpAPI.
+
+#### 2. Final QA Testing
+- **Manual Tests:**
+  - Checked travel plan generation for multiple destinations, budgets, and durations.
+  - Validated correct language output (Arabic and English).
+  - Ensured the plan includes required sections (itinerary, accommodations, tips, cost breakdown).
+- **Automated/Tool-Based Tests:**
+  - Used Postman to test SerpAPI responses and error handling.
+  - Used browser DevTools to simulate different devices and verify UI responsiveness.
+
+#### 3. Bug Handling
+- Identified issues with broken or irrelevant links from SerpAPI; mitigated by filtering unreliable results.
+- Fixed minor UI rendering problems when displaying long travel plans.
+- Resolved formatting inconsistencies in cost breakdown output.
+
+---
+
+**Deliverable:**  
+All core features of the MVP have been validated through integration and QA testing. The system now ensures that user inputs generate a complete, reliable, and well-formatted travel plan, ready for demonstration and stakeholder review.
+
