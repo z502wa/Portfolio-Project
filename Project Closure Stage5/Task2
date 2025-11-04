@@ -1,0 +1,34 @@
+## 2. Conduct a Team Retrospective
+
+### Purpose
+To evaluate the team’s performance and collect constructive feedback after completing the project.
+
+### Retrospective Summary
+A team retrospective meeting was held to review the overall collaboration, workflow, and challenges during the Smart Traveler MVP development.  
+All communication and coordination among team members were carried out through **Telegram**, ensuring real-time updates and smooth collaboration.
+
+### Key Discussion Points
+
+**What Worked Well**
+- Continuous collaboration through Telegram facilitated quick decision-making.  
+- Clear division of responsibilities between development, SCM, and QA roles.  
+- The Agile sprint process improved task visibility and time management.  
+- Regular code reviews enhanced quality and consistency.
+
+**Challenges**
+- Minor delays occurred when synchronizing between design updates and code implementation.  
+- Some tasks took longer than expected due to API rate-limit handling and model tuning.  
+- Maintaining consistent visual styling required additional review cycles.
+
+**Resolutions**
+- Improved communication flow using pinned Telegram messages and shared progress summaries.  
+- Established a mini check-in routine every two days to track progress and resolve blockers early.  
+- Implemented clearer task definitions before each sprint.
+
+**Future Improvements**
+- Introduce automated sprint-tracking tools integrated with Telegram for better visibility.  
+- Allocate more time for usability testing before final delivery.  
+- Encourage team members to document technical changes in real time.
+
+### Outcome
+The retrospective concluded that team communication and collaboration were highly effective overall, with actionable improvements identified for upcoming projects. The insights from this discussion have been integrated into the **Lessons Learned** section of the final report.
