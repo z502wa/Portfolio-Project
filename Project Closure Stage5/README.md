@@ -1,50 +1,33 @@
-### Task 0 — Results and Lessons Learned
+## 4. Deliverables
 
-#### Results Summary
-**Core MVP features delivered**
-- Centered inputs panel: `destination`, `duration`, `budget`, `travel_styles`, `answer_language`, `user_email`.
-- AI plan generation via Groq Llama (prompted with user inputs; English output by default).
-- Optional translation to Arabic while preserving Markdown and links.
-- Cost extraction from the **Estimated Total Trip Cost** section → donut chart (Plotly).
-- **Email delivery (replacing PDF export):** plan is converted to clean email-safe HTML; the cost chart is embedded as an inline PNG; message is sent over SMTP with TLS.
+### Final Report
+The final report consolidates all project outcomes, insights, and evaluations. It includes:
 
-**Data capture & UX**
-- Client IP captured via ipify (query param) for light telemetry.
-- Minimal CSV logging of inputs: `users_data.csv` (timestamp, destination, duration, budget, travel_style, email, ip).
-- Structured, responsive UI with a single “Generate” action and a separate Q&A tab grounded in the current plan.
+- **Results Summary:**  
+  Overview of the Smart Traveler MVP’s performance metrics, achieved objectives, and overall outcomes.
 
-**Comparison to Project Charter objectives**
-- Personalized itinerary generation aligned with user budget/duration — **Achieved**.
-- Safety/practical tips and clear structure (Markdown) — **Achieved**.
-- Fresh, verifiable references via live links — **Achieved**.
-- Export/sharing mechanism — **Achieved via Email** (PDF replaced by robust email HTML).
+- **Lessons Learned:**  
+  Reflections on the development journey, identifying both successes and areas for improvement.
 
-**Indicative metrics**
-- MVP feature completion: **100%**
-- Avg. plan generation time: **4 sec**
-- Email delivery success rate: **100%**
-- Cost section parsed & chart rendered: **100%**
-- Critical bugs fixed: **95%**
+- **Team Retrospective Highlights:**  
+  Key takeaways from the retrospective meeting, summarizing what worked well, challenges encountered, and improvement suggestions for future projects.
 
 ---
 
-#### Lessons Learned
-**What worked well**
-- Replacing PDF export with **email HTML** simplified delivery and improved compatibility across devices.
-- Cost parsing → donut chart → inline image in email gave users a clear, visual breakdown.
-- Modular prompting and UI composition enabled fast iteration and clearer responsibilities between components.
+### Presentation Slide Deck
+A professional presentation showcasing the full project lifecycle, featuring:
 
-**Challenges & how we addressed them**
-- Inconsistent “cost” formats in model outputs → implemented a tolerant parser for ranges/tables and averaged ranges.
-- Broken/unhelpful links in outputs → normalized Markdown links and escaped HTML; kept link text sensible for email clients.
-- Email client quirks with Markdown → custom Markdown→HTML converter tailored for email safety (lists, headings, italics, links).
+- **Project Stages Overview:**  
+  From ideation and project charter to technical documentation, MVP development, and closure.
 
-**Improvements for future sprints**
-- Add lightweight validation to ensure a detectable **Estimated Cost** section before charting.
-- Add retry/backoff and bounce handling for SMTP; surface clearer user-facing errors.
-- Make the email template theming configurable and add simple A/B variants for readability.
+- **Technical Architecture & Implementation:**  
+  Diagrams and explanations of the system’s structure, workflows, and chosen tools.
+
+- **MVP Demonstration:**  
+  Live demo or recorded walkthrough of Smart Traveler’s main features and functionality.
+
+- **Results and Insights:**  
+  Quantitative and qualitative outcomes, user feedback, and final reflections on project impact.
 
 ---
 
-**Deliverable Note**
-This MVP is **demo-ready**: Users enter inputs → AI generates plan → costs are visualized → plan is emailed in polished HTML with the chart embedded.
